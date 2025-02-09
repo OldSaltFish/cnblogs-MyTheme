@@ -1,0 +1,19 @@
+## 介绍
+该目录下的脚本是本人博客园的js主题脚本。  
+
+大致上是基于https://github.com/Zou-Wang/CNblogs-Theme-Sakura这个主题的1.0版本进行修改的。  
+但是事实上我并不是很喜欢这个主题，现在已经将这个主题改得完全不一样了，有非常大的区别。  
+
+## 使用
+博客园开通js权限……   
+> 并不推荐除了我之外的人使用，因为我并没有新创建一个博客园账号去测试如何从零开始使用这个主题。  
+
+由于是自己用的，因此并不会把使用说明写得很详细，但是你可以通过这个仓库，来了解这个博客的样式和js是如何写出来的。  
+...
+
+1. /css/index.css  
+2. main.js(main后面可能加数字，因为博客园文件有缓存，改了之后不会立即生效)。  
+## 开发
+使用less简化css的编写。  
+使用easy-less插件，按Ctrl+S时自动将less文件编译成css文件。  
+https://marketplace.cursorapi.com/items?itemName=mrcrowl.easy-less  

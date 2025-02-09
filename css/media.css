@@ -1,0 +1,95 @@
+/** 该样式负责媒体查询（仅适配手机竖屏768以下，平板使用pc布局） */
+/* @media (max-width: 768px) {
+  .notice {
+      margin-top: 40px;
+      margin-bottom: 20px
+  }
+} */
+/* @media(min-width:768px){
+      .readers-list li{width:50%;}
+  }
+  @media(max-width:767px){
+      .readers-list li{width:100%;}
+  } */
+@media screen and (max-width: 768px) {
+  #mainContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+  }
+  .post-thumb a {
+    height: 210px;
+  }
+  .esa-catalog {
+    display: none;
+  }
+  .float-content .post-text {
+    font-size: 13px;
+    margin-bottom: 1em;
+  }
+  #home {
+    font-size: 12px !important;
+  }
+  #mainContent .forFlow {
+    padding-top: 15px;
+  }
+  .postBody {
+    padding: 0 !important;
+  }
+  #topics .postTitle {
+    padding-left: 0 !important;
+    padding-top: 10px;
+  }
+  #comment_nav,
+  #commentbox_main {
+    margin: 0;
+  }
+  #comment_form {
+    padding: 5px;
+    margin-left: 0;
+  }
+  .esa-mobile-menu {
+    display: block;
+  }
+  .forFlow {
+    margin-right: 0;
+    margin-left: 0 !important;
+  }
+  .feedbackItem .feedbackManage {
+    width: auto;
+  }
+  .github-corner {
+    display: none;
+  }
+  #div_digg {
+    width: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .pattern-center-sakura header.single-header {
+    padding: 0 4%;
+  }
+  .pattern-attachment-img {
+    height: 280px;
+  }
+  .pattern-center-sakura h1.cat-title,
+  .pattern-center-sakura h1.entry-title,
+  .single-center .single-header h1.entry-title {
+    font-size: 26px;
+  }
+}
+@media (max-width: 768px) {
+  .float-content {
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+  .post-bottom {
+    text-align: right;
+  }
+  .post-list-thumb-left .post-thumb a,
+  .post-thumb a {
+    border-radius: 10px;
+  }
+}
