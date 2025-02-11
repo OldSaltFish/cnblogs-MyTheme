@@ -1,0 +1,127 @@
+<!-- 此处不要引入会被依赖的js库 -->
+<!-- 字体 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<!--放大图片-->
+<!-- <link rel="stylesheet" type="text/css" href="https://blog-static.cnblogs.com/files/zouwangblog/zoom.css"> -->
+<link rel="stylesheet" type="text/css" href="https://files.cnblogs.com/files/blogs/806667/zoom.css">
+<!-- <script src="https://blog-static.cnblogs.com/files/zouwangblog/zoom.js"></script> -->
+<script src="https://files.cnblogs.com/files/blogs/806667/zoom.js"></script>
+<script type='text/javascript'>$('#cnblogs_post_body img').attr('data-action', 'zoom');</script>
+<!--放大图片end-->
+
+
+
+<!-- Music-->
+<!--  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css">
+<script src="https://blog-static.cnblogs.com/files/zouwangblog/APlayer.min.js"></script>
+<script src="https://unpkg.com/meting@1.2/dist/Meting.min.js"></script>
+<div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="5180767548" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="orange"></div>
+ -->
+
+<!-- Music end -->
+
+
+<!--雪花特效1&12月自动添加-->
+
+<!-- <div class="Snow">
+    <canvas id="Snow"></canvas>
+</div>
+<script src="https://blog-static.cnblogs.com/files/zouwangblog/xue.js"></script> -->
+
+
+<!--顶部加载条-->
+<link rel="stylesheet" href="https://blog-static.cnblogs.com/files/zouwangblog/nprogress.css">
+<script src="https://blog-static.cnblogs.com/files/zouwangblog/nprogress.js"></script>
+<script>
+  NProgress.start();
+  NProgress.done();
+</script>
+<!-- 加载自定义js -->
+<script>
+  'use strict'
+  // 友链检测有效性
+  {
+    const config = {
+      postId: '17802186'
+    }
+
+    function runJs() {
+      $(document).ready(() => {
+        // 获取所有class为friendLinks的链接元素
+        const links = document.querySelectorAll('.friendLinks');
+        // 遍历每个链接元素，并检测其链接是否可达
+        for (let i = 0; i < links.length; i++) {
+          const linkElement = links[i];
+          const siblingSpan = linkElement.querySelector('span');
+          $.ajax({
+            type: 'get',
+            url: linkElement.href,
+            dataType: 'jsonp',
+            timeout: 3000,
+            complete: function (res) {
+              if (res.status == 200) {
+                siblingSpan.textContent = "链接有效";
+              } else {
+                siblingSpan.textContent = "链接超时";
+              }
+            }
+          });
+        }
+      })
+    }
+
+    function main() {
+      if (window.currentPostId == config.postId) {
+        runJs();
+      }
+      // 去广告
+      $('.ad_text_commentbox,#cnblogs_ch,#opt_under_post,#under_post_card1,#under_post_card2').remove()
+    }
+    main();
+  }
+  // 鼠标特效
+  (function () {
+    var a_idx = 0;
+    window.onclick = function (event) {
+      var a = new Array("Ciallo～(∠・ω< )⌒☆");
+
+      var heart = document.createElement("b"); //创建b元素
+      heart.onselectstart = new Function('event.returnValue=false'); //防止拖动
+
+      document.body.appendChild(heart).innerHTML = a[a_idx]; //将b元素添加到页面上
+      a_idx = (a_idx + 1) % a.length;
+      heart.style.cssText = "position: fixed;left:-100%;"; //给p元素设置样式
+
+      var f = 16, // 字体大小
+        x = event.clientX - f / 2, // 横坐标
+        y = event.clientY - f, // 纵坐标
+        c = randomColor(), // 随机颜色
+        a = 1, // 透明度
+        s = 1.2; // 放大缩小
+
+      var timer = setInterval(function () { //添加定时器
+        if (a <= 0) {
+          document.body.removeChild(heart);
+          clearInterval(timer);
+        } else {
+          heart.style.cssText = "font-size:16px;cursor: default;position: fixed;color:" +
+            c + ";left:" + x + "px;top:" + y + "px;opacity:" + a + ";transform:scale(" +
+            s + ");";
+
+          y--;
+          a -= 0.016;
+          s += 0.002;
+        }
+      }, 15)
+
+    }
+    // 随机颜色
+    function randomColor() {
+
+      return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math
+        .random() * 255)) + ")";
+
+    }
+  })();
+</script>

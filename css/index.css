@@ -477,6 +477,11 @@ a:hover {
   transition: all 0.4s ease;
   padding-right: 1%;
 }
+@media screen and (max-width: 768px) {
+  #header #navList {
+    display: none;
+  }
+}
 #header #navList li i {
   width: 0;
   height: 4px;

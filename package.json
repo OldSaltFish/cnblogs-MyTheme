@@ -1,0 +1,21 @@
+{
+  "name": "806667",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rsbuild build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@9.4.0+sha1.9217c800d4ab947a7aee520242a7b70d64fc7638",
+  "devDependencies": {
+    "@rsbuild/core": "^1.2.4",
+    "@rspack/cli": "^1.2.2",
+    "@rspack/core": "^1.2.2",
+    "@types/jquery": "^3.5.32",
+    "lit": "^3.2.1"
+  }
+}

@@ -136,7 +136,10 @@
         $layer.remove();
       }, 2000);
     }
-
+    isMobileViewport() {
+      return window.matchMedia("(max-width: 767px)").matches;
+    }
+    
     /**
      * 通用模式设置
      */
@@ -289,11 +292,14 @@
 
       // 去除多余的导航项
       $("#navList >:not(:last-child)").remove();
-      $("#navList").append(
+      if(!this.isMobileViewport()){
+        $("#navList").append(
         '<li><a id="blog_nav_myyoulian" class="menu" href="http://alist.dreamsoul.cn"><i class="fa fa-hdd-o" aria-hidden="true"></i>网盘</a></li>',
         '<li><a id="blog_nav_myyoulian" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802186.html"><i class="fa fa-link" aria-hidden="true"></i>友链</a></li>',
+        '<li><search-box></search-box></li>'
         // '<li><a id="blog_nav_myguanyu" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802192.html"><i class="fa fa-leaf" aria-hidden="true"></i>关于</a></li>'
       );
+      }
       // 管理的图标
       $("#blog_nav_admin").prepend(
         '<i class="fa fa-list" aria-hidden="true"></i>',
@@ -779,6 +785,7 @@
     //      }
     //     });
 
+
     //     $btnFollow.on('click', () => {
     //         loadLink(location.protocol + "//common.cnblogs.com/scripts/artDialog/ui-dialog.css", () => {
     //             loadScript(location.protocol + "//common.cnblogs.com/scripts/artDialog/dialog-min.js", () => {
@@ -844,9 +851,20 @@
               </a>
           </div>
           `;
-      // 去除原有的blogTitle
+      // Remove the original blogTitle
       $("#blogTitle").remove();
-      $("#header").prepend(title);
+      if(this.isMobileViewport()){
+        $('#navList').remove();
+        const myTopBar = $(`
+          <div style="display:flex;padding: 12px 8px;float: right;">
+            <unfold-menu></unfold-menu>
+            <search-box></search-box>
+          </div>
+        `);
+        $('#navigator').prepend(myTopBar);
+      }else{
+        $("#header").prepend(title); 
+      }
     }
 
     /**

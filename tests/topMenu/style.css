@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+:host {
+  display: grid;
+  position: relative;
+  width: 80px;
+  align-items: center;
+}
+:host label {
+  text-align: center;
+}
+:host label::before {
+  content: "\f078";
+  /* Unicode for down arrow */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 5px;
+}
+:host #menu-toggle:checked + .menu label::before {
+  content: "\f077";
+  /* Unicode for up arrow */
+}
+:host #menu-toggle:checked ~ ul {
+  height: 100px;
+  padding: 8px;
+}
+:host ul {
+  position: fixed;
+  display: flex;
+  z-index: 10;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 24px;
+  height: 0;
+  width: 90vw;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  background-color: #f8f8f8;
+  transition: 0.5s ease-in-out;
+}
+:host ul li {
+  list-style-type: none;
+}

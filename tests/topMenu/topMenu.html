@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <script type="module">
+    import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+    class UnfoldMenu extends LitElement {
+      static properties = {
+        keywords: { type: String }
+      };
+      constructor() {
+        super();
+        this.keywords = '';
+      }
+      render() {
+        return html`
+    <input type="checkbox" id="menu-toggle" style="display: none;">
+    <div class="menu">
+      <label for="menu-toggle" style="cursor: pointer;"></label>
+      <a href="https://www.cnblogs.com/oldsaltfish/">主页</a>
+    </div>
+    <ul>
+      <li><a class="menu" href="http://alist.dreamsoul.cn"><i class="fa fa-hdd-o" aria-hidden="true"></i>网盘</a></li>
+      <li><a id="blog_nav_myyoulian" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802186.html"><i
+            class="fa fa-link" aria-hidden="true"></i>友链</a></li>
+    </ul>
+        `;
+      }
+      static styles = css`
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.fa-hdd-o:before {
+    content: "\\f0a0";
+}
+.fa-chain:before, .fa-link:before {
+    content: "\\f0c1";
+}
+:host {
+  display: grid;
+  position: relative;
+  width: 80px;
+  align-items: center;
+}
+:host label {
+  text-align: center;
+}
+:host label::before {
+  content: "\\f078";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 5px;
+}
+:host #menu-toggle:checked + .menu label::before {
+  content: "\\f077";
+  /* Unicode for up arrow */
+}
+:host #menu-toggle:checked ~ ul {
+  height: 100px;
+  padding: 8px;
+}
+:host ul {
+  position: fixed;
+  display: flex;
+  z-index: 10;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 24px;
+  height: 0;
+  width: 90vw;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  background-color: #f8f8f8;
+  transition: 0.5s ease-in-out;
+}
+:host ul li {
+  list-style-type: none;
+}
+
+      `
+    }
+    customElements.define('unfold-menu', UnfoldMenu);
+    let menu = document.createElement('unfold-menu');
+  document.body.appendChild(menu);
+  </script>
+</body>
+
+</html>
