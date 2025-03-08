@@ -17,3 +17,10 @@
 使用less简化css的编写。  
 使用easy-less插件，按Ctrl+S时自动将less文件编译成css文件。  
 https://marketplace.cursorapi.com/items?itemName=mrcrowl.easy-less  
+
+### 博客园环境
+1. 博客园自带jquery环境。  
+截止到2025.3.9，目前的版本是3.3.1。  
+2. jquery.writeCapture插件，没了解过。  
+3. css环境，放在env目录下。这些css在网页中自动加载，因此如果我们写html控件，应当考虑这些css的影响。  
+4. 百度和谷歌，以及博客园自带的js，一万来行，谁去看。  
