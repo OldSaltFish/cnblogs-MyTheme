@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+import { LitElement, html, css } from 'https://https://blog-static.cnblogs.com/files/blogs/806667/lit-core@3.min.js';
 class SearchBox extends LitElement {
   static properties = {
     keywords: { type: String }
