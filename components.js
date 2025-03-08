@@ -1,37 +1,39 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 class SearchBox extends LitElement {
-      static properties = {
-        keywords: { type: String }
-      };
-      constructor() {
-        super();
-        this.keywords = '';
-      }
-      onSearch() {
-        console.log('搜索关键词:', this.keywords);
-        const link = document.createElement('a');
-        link.href = `https://bing.com/search?q=${this.keywords}+site%3A+www.cnblogs.com%2Foldsaltfish`;
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-      render() {
-        return html`
+  static properties = {
+    keywords: { type: String }
+  };
+  constructor() {
+    super();
+    this.keywords = '';
+  }
+  onSearch() {
+    console.log('搜索关键词:', this.keywords);
+    const link = document.createElement('a');
+    link.href = `https://bing.com/search?q=${this.keywords}+site%3A+www.cnblogs.com%2Foldsaltfish`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  render() {
+    return html`
           <div class="inputBox">
-            <input required="" type="text" .value="${this.keywords}" @input="${(e) => {this.keywords = e.target.value;console.log(this.keywords);
-            }}">
+            <input required="" type="text" .value="${this.keywords}" @input="${(e) => {
+        this.keywords = e.target.value;
+      }
+      }" @keydown="${(e) => e.key === 'Enter' && this.onSearch()}">
             <span>站内搜索</span>
           </div>
           <button class="btn" @click="${this.onSearch}">
             搜索
           </button>
         `;
-      }
+  }
 
 
 
-      static styles = css`
+  static styles = css`
 :host {
 display: flex;
 border: 1px solid #ee8456;
@@ -208,7 +210,6 @@ transition: 0.5s ease-in-out;
 :host ul li {
 list-style-type: none;
 }
-
   `
 }
 customElements.define('unfold-menu', UnfoldMenu);

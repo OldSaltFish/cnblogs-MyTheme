@@ -843,13 +843,7 @@
       //博客logo
       // 可以使用this.defaluts.signature.author来代替名称，算了懒得搞
       var title = `
-          <div class="site-branding">
-              <a href="https://www.cnblogs.com/oldsaltfish/" alt="主页">
-                  <div>
-                      <h1>魂祈梦</h1>
-                  </div>
-              </a>
-          </div>
+              <a class="site-branding" href="https://www.cnblogs.com/oldsaltfish/" alt="主页">魂祈梦</a>
           `;
       // Remove the original blogTitle
       $("#blogTitle").remove();
