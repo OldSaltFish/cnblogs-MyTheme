@@ -1,4 +1,4 @@
-declare module 'https://https://blog-static.cnblogs.com/files/blogs/806667/lit-core@3.min.js' {
+declare module 'https://blog-static.cnblogs.com/files/blogs/806667/lit-core@3.min.js' {
   export * from 'lit';
 }
 
