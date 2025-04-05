@@ -1,5 +1,4 @@
 (function ($) {
-  console.log("main");
   $.extend({
     silence: (options) => {
       var silence = new Silence();
@@ -98,7 +97,6 @@
         $.extend(true, this.defaluts, options);
       }
       this.buildCustomElements();
-      // this.buildGithubCorner();
       this.buildCopyright();
       this.buildBloggerProfile();
       this.getMainMode();
@@ -128,7 +126,7 @@
      */
     showMessage(content) {
       $("body").prepend(
-        `<div class="esa-layer"><span class="esa-layer-content">${content}</span></div>`,
+        `<div class="esa-layer"><span class="esa-layer-content">${content}</span></div>`
       );
       let $layer = $(".esa-layer");
       $layer.fadeIn(200);
@@ -139,7 +137,7 @@
     isMobileViewport() {
       return window.matchMedia("(max-width: 767px)").matches;
     }
-    
+
     /**
      * 通用模式设置
      */
@@ -244,95 +242,45 @@
      * 构建自定义 DOM 元素
      */
     buildCustomElements() {
-      // Change page title.
-      // const blogTitle = $(this.cnblogs.blogTitle).find('h1 a').html();
-      // const autherName = $(this.cnblogs.publicProfile).find('a:eq(0)').html();
-      // let $title = $('head').find('title');
-      // $title.html(
-      //   $title.html().replace(`春原庄的雪 | ${autherName}`, `${blogTitle}`)
-      // );
-
-      // Build a tags button on navbar.
-      // let $navList = $(this.cnblogs.navList);
-      // $.each($navList.find('li'), (index, nav) => {
-      //   $(nav).append('<i></i>');
-      // });
-
-      // Build a menu button on mobile browser.
-      // $('body').prepend(`<div class="esa-mobile-menu"></div>`);
-      // $('.esa-mobile-menu').on('click', () => {
-      //   $(this.cnblogs.navigator).fadeToggle(200);
-      // });
-
       //回到顶部特效
-      {
-        $("body").prepend(
-          `<a href="javascript:;" class="cd-top faa-float animated cd-fade-out"></a>`,
-        );
-        $(".cd-top").click(function () {
-          $("html, body").animate(
-            {
-              scrollTop: 0,
-            },
-            1000,
-          ); // 1000代表1秒内滚动到顶部，你可以根据需求调整这个数值
-        });
-        let $win = $(window);
-        let oldScrollY = 0;
-        $win.scroll(function () {
-          oldScrollY = window.scrollY;
-          let height = window.innerHeight;
-          if (oldScrollY > height / 4) {
-            $(".cd-top").css("display", "inline");
-          } else {
-            $(".cd-top").css("display", "none");
-          }
-        });
-      }
+
+      $("body").prepend(
+        `<a href="javascript:;" class="cd-top faa-float animated cd-fade-out"></a>`
+      );
+      $(".cd-top").click(function () {
+        $("html, body").animate(
+          {
+            scrollTop: 0,
+          },
+          1000
+        ); // 1000代表1秒内滚动到顶部，你可以根据需求调整这个数值
+      });
+      let $win = $(window);
+      let oldScrollY = 0;
+      $win.scroll(function () {
+        oldScrollY = window.scrollY;
+        let height = window.innerHeight;
+        if (oldScrollY > height / 4) {
+          $(".cd-top").css("display", "inline");
+        } else {
+          $(".cd-top").css("display", "none");
+        }
+      });
 
       // 去除多余的导航项
       $("#navList >:not(:last-child)").remove();
-      if(!this.isMobileViewport()){
+      if (!this.isMobileViewport()) {
         $("#navList").append(
-        '<li><a id="blog_nav_myyoulian" class="menu" href="http://alist.dreamsoul.cn"><i class="fa fa-hdd-o" aria-hidden="true"></i>网盘</a></li>',
-        '<li><a id="blog_nav_myyoulian" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802186.html"><i class="fa fa-link" aria-hidden="true"></i>友链</a></li>',
-        '<li><search-box></search-box></li>'
-        // '<li><a id="blog_nav_myguanyu" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802192.html"><i class="fa fa-leaf" aria-hidden="true"></i>关于</a></li>'
-      );
+          '<li><a id="blog_nav_myyoulian" class="menu" href="http://alist.dreamsoul.cn"><i class="fa fa-hdd-o" aria-hidden="true"></i>网盘</a></li>',
+          '<li><a id="blog_nav_myyoulian" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802186.html"><i class="fa fa-link" aria-hidden="true"></i>友链</a></li>',
+          "<li><search-box></search-box></li>"
+          // '<li><a id="blog_nav_myguanyu" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802192.html"><i class="fa fa-leaf" aria-hidden="true"></i>关于</a></li>'
+        );
       }
       // 管理的图标
       $("#blog_nav_admin").prepend(
-        '<i class="fa fa-list" aria-hidden="true"></i>',
+        '<i class="fa fa-list" aria-hidden="true"></i>'
       );
-      // $('#navList').append(
-      //   '<li><a id="blog_nav_myhdd" class="menu" href="http://alist.dreamsoul.cn">网盘</a><i></i></li><li><a id="blog_nav_myguanyu" class="menu" href="https://www.cnblogs.com/oldsaltfish/articles/17802192.html">关于</a><i></i></li>'
-      // );
-      //添加标签icon
-      // $('#blog_nav_myhome').prepend(
-      //   '<i class="fa fa-fort-awesome" aria-hidden="true"></i>'
-      // );
-      // $('#blog_nav_contact').prepend(
-      //   '<i class="fa fa-address-book-o" aria-hidden="true"></i>'
-      // );
-      // $('#blog_nav_rss').prepend(
-      //   '<i class="fa fa-rss faa-pulse" aria-hidden="true"></i>'
-      // );
-
-      // $('#blog_nav_myyoulian').prepend(
-      //   '<i class="fa fa-link" aria-hidden="true"></i>'
-      // );
-      // $('#blog_nav_myzanshang').prepend(
-      //   '<i class="fa fa-heart" aria-hidden="true"></i>'
-      // );
-      //修改处，改成自己的关于页面，https://i.cnblogs.com/articles，到这里写
-      //添加li内嵌ui
-      // let guanyu = '<ul class="sub-menu">' +
-      //      '<li><a href="https://www.cnblogs.com/zouwangblog/articles/11157339.html "><i class="fa fa-meetup" aria-hidden="true"></i> 我？</a></li>' +
-      //      '<li><a href="https://www.cnblogs.com/zouwangblog/articles/11346906.html "><i class="fa fa-area-chart" aria-hidden="true"></i> 统计</a></li>' +
-      //      '<li><a href="https://www.cnblogs.com/zouwangblog/articles/11350777.html "><i class="fa fa-heartbeat" aria-hidden="true"></i> 监控</a></li>' +
-      //      '<li><a href="https://www.cnblogs.com/zouwangblog/p/11541835.html "><i class="iconfont icon-taohua" aria-hidden="true"></i> 主题</a></li>' +
-      //      '</ul>';
-      // $('#blog_nav_myguanyu').after(guanyu);
     }
 
     /**
@@ -341,7 +289,7 @@
     buildCopyright() {
       //这里能保留么，算是我的一个小心愿。
       var content = `<div> Powered By <a href="https://www.cnblogs.com" target="_blank">Cnblogs</a> |
-          Theme <a href="https://github.com/Zou-Wang/CNblogs-Theme-Sakura" target="_blank">Toretto v${this.version}</a></div>`;
+          Theme <a href="https://gitee.com/oldsaltfish/cnblogs-MyTheme" target="_blank">Theme modified</a></div>`;
       $(this.cnblogs.footer).append(content);
     }
 
@@ -371,7 +319,7 @@
     buildPostCommentAvatars() {
       var builder = () => {
         $(this.cnblogs.postCommentBody).before(
-          `<div class='esa-comment-avatar'><a target='_blank'><img /></a></div>`,
+          `<div class='esa-comment-avatar'><a target='_blank'><img /></a></div>`
         );
         let feedbackCon = $(this.cnblogs.feedbackContent);
         for (var i = 0; i < feedbackCon.length; i++) {
@@ -421,10 +369,11 @@
 
       $("#blog_post_info").prepend(`
           <div class="esa-sponsor">
-              <a class="github" href="${github.enable
-          ? github.link
-          : "https://github.com/Kaiyuan/donate-page"
-        }" target="_blank" class="posa tr3" title="Github"></a>
+              <a class="github" href="${
+                github.enable
+                  ? github.link
+                  : "https://github.com/Kaiyuan/donate-page"
+              }" target="_blank" class="posa tr3" title="Github"></a>
               <div class="text tr3">${sponsor.text || "Sponsor"}</div>
               <ul class="box posa tr3">
                   <li class="paypal">PayPal</li>
@@ -487,7 +436,7 @@
     buildPostFavoriteBtn() {
       let builder = () => {
         $(this.cnblogs.postDigg).prepend(
-          `<div class="favorite" onclick="AddToWz(cb_entryId);return false;"><span class="favoritenum" id="favorite_count"></span></div>`,
+          `<div class="favorite" onclick="AddToWz(cb_entryId);return false;"><span class="favoritenum" id="favorite_count"></span></div>`
         );
       };
 
@@ -513,7 +462,6 @@
 
       let levels = [config.level1, config.level2, config.level3];
       let $headers = $(this.cnblogs.postBody).find(levels.join(","));
-      console.log("header", $headers);
       if (!$headers.length || $headers.length < 2) {
         return;
       }
@@ -524,7 +472,7 @@
                 <div class="esa-catalog-title">目录</div>
                 <a class="esa-catalog-close">✕</a>
             </div>
-        </div>`,
+        </div>`
       );
 
       let h1c = 0;
@@ -575,14 +523,15 @@
         var idx = eleIds[index];
 
         catalogContents += `<li class="li_${tagName}" title="${title}">
-                          <i class="${idx}" ></i><a class="esa-anchor-link">${titleIndex + titleContent
-          }</a>
+                          <i class="${idx}" ></i><a class="esa-anchor-link">${
+          titleIndex + titleContent
+        }</a>
                       </li>`;
 
         $(header)
           .attr("id", `${idx}`)
           .html(
-            `<span>${titleContent}</span><a href="#${idx}" class="esa-anchor">#</a>`,
+            `<span>${titleContent}</span><a href="#${idx}" class="esa-anchor">#</a>`
           )
           .hover(
             () => {
@@ -590,7 +539,7 @@
             },
             () => {
               $(header).find(".esa-anchor").css("opacity", 0);
-            },
+            }
           );
       });
       catalogContents += `</ul>`;
@@ -605,22 +554,16 @@
           <div class="drawer">
             <div class="content"></div>
           </div>
-        </div>`,
+        </div>`
       );
       $phoneBottomMenu.appendTo("body");
 
       let $phoneMenuContent = $(".bottom-menu .drawer .content");
-      console.log($phoneMenuContent)
       if ($phoneMenuContent.length) {
         $phoneMenuContent.append(catalogContents);
       }
 
       $catalog.appendTo("body");
-      // let wrapper = document.querySelector('#page_begin_html .drawer')
-      // console.log('wrapper',wrapper)
-      // let bs = new BScroll(wrapper, {
-      //   probeType: 3
-      // })
       let $tabContent = $(".esa-catalog-contents");
 
       $tabContent.fadeIn();
@@ -632,7 +575,7 @@
           {
             scrollTop: position,
           },
-          300,
+          300
         );
       });
       $(".esa-catalog-close").on("click", () => {
@@ -700,7 +643,7 @@
       $.each($pres, (index, pre) => {
         $(pre).find("code").attr("id", `copy_target_${index}`);
         $(pre).prepend(
-          `<div class="esa-clipboard-button" data-clipboard-target="#copy_target_${index}" title="复制代码">Copy</div>`,
+          `<div class="esa-clipboard-button" data-clipboard-target="#copy_target_${index}" title="复制代码">Copy</div>`
         );
       });
 
@@ -715,108 +658,9 @@
           clipboard.on("error", (e) => {
             this.showMessage("代码复制失败");
           });
-        },
+        }
       );
     }
-
-    // 删除部分
-    /**
-     * 构建 Github Corner，删除，太丑了。
-     */
-    // buildGithubCorner() {
-    //     const config = this.defaluts.github;
-    //     if (config.enable) {
-    //         let fillStyle = config.fill ? `fill:${config.fill};` : '';
-    //         $('body').append(
-    //                 `<a href="${config.link}" class="github-corner" title="Fork me on GitHub">
-    //                 <svg width="60" height="60" viewBox="0 0 250 250" style="${fillStyle} color:${config.color}; z-index: 999999; position: fixed; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true">
-    //                     <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-    //                     <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-    //                     <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
-    //                 </svg>
-    //             </a>`);
-    //     }
-    // }
-    /**
-     * 构建工具栏，注释掉了，太丑了。
-     */
-    // buildToolbar() {
-    //     const catalog = this.defaluts.catalog;
-    //     $('body').append(`<div class="esa-toolbar">
-    //         <button class="esa-toolbar-gotop"><div class="tips">返回顶部</div></button>
-    //         <button class="esa-toolbar-contents"><div class="tips">阅读目录</div></button>
-    //     </div>`);
-    //     // <button class="esa-toolbar-follow">捕获</button>
-
-    //     let $btnGotop = $('.esa-toolbar-gotop');
-    //     let $btnContents = $('.esa-toolbar-contents');
-    //     let $btnFollow = $('.esa-toolbar-follow');
-
-    //     if (catalog.enable) {
-    //      $btnContents.on('click', () => {
-    //          let $catalog = $('.esa-catalog-contents');
-    //          if ($catalog.css('display') == 'none') {
-    //              $catalog.fadeIn();
-    //          } else {
-    //              $catalog.hide();
-    //          }
-    //      }).hover(() => {
-    //          $btnContents.find('.tips').show();
-    //      }, () => {
-    //          $btnContents.find('.tips').hide();
-    //      });
-    //     } else {
-    //      $btnContents.remove();
-    //     }
-
-    //     $btnGotop.on('click', () => {
-    //      $(window).scrollTop(0);
-    //     }).hover(() => {
-    //      $btnGotop.find('.tips').show();
-    //     }, () => {
-    //      $btnGotop.find('.tips').hide();
-    //     });
-
-    //     $(window).scroll(function () {
-    //      if (this.scrollY > 200) {
-    //          $btnGotop.fadeIn();
-    //      } else {
-    //          $btnGotop.fadeOut();
-    //      }
-    //     });
-
-
-    //     $btnFollow.on('click', () => {
-    //         loadLink(location.protocol + "//common.cnblogs.com/scripts/artDialog/ui-dialog.css", () => {
-    //             loadScript(location.protocol + "//common.cnblogs.com/scripts/artDialog/dialog-min.js", () => {
-    //                 if (!isLogined) {
-    //                     return login();
-    //                 }
-    //                 if (c_has_follwed) {
-    //                     return this.showMessage('您已经关注过该博主');
-    //                 }
-    //                 const n = cb_blogUserGuid;
-    //                 $.ajax({
-    //                     url: "/mvc/Follow/FollowBlogger.aspx",
-    //                     data: '{"blogUserGuid":"' + n + '"}',
-    //                     dataType: "text",
-    //                     type: "post",
-    //                     contentType: "application/json; charset=utf-8",
-    //                     success: (msg) => {
-    //                         msg == "未登录" ? login() : (msg == "关注成功" && followByGroup(n, !0));
-    //                         this.showMessage(msg);
-    //                     }
-    //                 })
-    //             })
-    //         })
-    //     }).hover(() => {
-    //         $btnFollow.find('.tips').show();
-    //     }, () => {
-    //         $btnFollow.find('.tips').hide();
-    //     });
-    // }
-
-    // 剩余部分
     /**
      * 构建博主信息
      */
@@ -830,13 +674,13 @@
 
       if (!this.isPostPage && config.avatar) {
         $(this.cnblogs.sideBarMain).prepend(
-          `<img class="esa-profile-avatar" src="${config.avatar}" />`,
+          `<img class="esa-profile-avatar" src="${config.avatar}" />`
         );
       }
 
       if (config.favicon) {
         $("head").append(
-          `<link rel="shortcut icon" href="${config.favicon}" type="image/x-icon" />`,
+          `<link rel="shortcut icon" href="${config.favicon}" type="image/x-icon" />`
         );
       }
       // <span class="logolink moe-mashiro">
@@ -847,17 +691,17 @@
           `;
       // Remove the original blogTitle
       $("#blogTitle").remove();
-      if(this.isMobileViewport()){
-        $('#navList').remove();
+      if (this.isMobileViewport()) {
+        $("#navList").remove();
         const myTopBar = $(`
           <div style="display:flex;padding: 12px 8px;float: right;">
             <unfold-menu></unfold-menu>
             <search-box></search-box>
           </div>
         `);
-        $('#navigator').prepend(myTopBar);
-      }else{
-        $("#header").prepend(title); 
+        $("#navigator").prepend(myTopBar);
+      } else {
+        $("#header").prepend(title);
       }
     }
 
@@ -937,22 +781,16 @@
     mainHeader() {
       const config = this.defaluts.topInfo;
       var header =
-        `<div class="headertop">` +
-        `</div>` +
         `<div class="main-header">` +
         `</div>` +
         `<div class="focusinfo no-select">` +
         // data-text修改处
-        `       <h1 class="center-text glitch is-glitching Ubuntu-font" data-text="Here, I am.">${config.title}</h1>` +
+        `       <h1 class="center-text glitch is-glitching Ubuntu-font" data-text="${config.title}">${config.title}</h1>` +
         `       <div class="header-info"><p><i class="fa fa-quote-left"></i> ${config.text} <i class="fa fa-quote-right"></i></p>` +
         `           <div class="top-social_v2">` +
         `              <li id="bg-pre"><img class="flipx" src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png"></li>` +
         `              <li><a href="${config.github}" target="_blank" class="social-github" title="github"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095618459-218538626.png"></a></li>` +
-        // `              <li><a href="${config.weibo}" target="_blank" class="social-sina" title="sina"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095623418-1617766229.png"></a></li>` +
-        // `              <li><a href="${config.telegram}" target="_blank" class="social-lofter" title="telegram"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095628401-835828752.png"></a></li>` +
         `              <li><a href="${config.music}" target="_blank" class="social-wangyiyun" title="CloudMusic"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095640330-1209750721.png"></a></li>` +
-        // `              <li><a href="${config.twitter}" target="_blank" class="social-wangyiyun" title="Twitter"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095635213-701885869.png"></a></li>` +
-        // `              <li><a href="${config.zhihu}" target="_blank" class="social-wangyiyun" title="Zhihu"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095650119-1882504549.png"></a></li>` +
         `              <li><a href="${config.mail}" target="_blank" class="social-wangyiyun" title="E-mail"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095613956-1350546638.png"></a></li>` +
         `              <li id="bg-next"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png"></li>` +
         `           </div>` +
@@ -1026,7 +864,7 @@
       for (let i = article_list.length - 1; i >= 0; i--) {
         let time = $(".day")
           .find("div.dayTitle")
-        [i].textContent.replace("年", "-")
+          [i].textContent.replace("年", "-")
           .replace("月", "-")
           .replace("日", ""); //获取年月日
         let PostTitles = $(article_list[i]).find(".postTitle");
@@ -1040,11 +878,11 @@
           let desc = $(descs[j]).text();
           let readNum = desc.substring(
             desc.indexOf("(") + 1,
-            desc.indexOf(")"),
+            desc.indexOf(")")
           );
           let comNum = desc.substring(
             desc.lastIndexOf("(") + 1,
-            desc.lastIndexOf(")"),
+            desc.lastIndexOf(")")
           );
           let edit = $(descs[j]).find("a")[0].href;
           let url = $(infos[j]).find("img")[0];
@@ -1137,14 +975,64 @@
       switch (arguments.length) {
         case 1:
           return parseInt(Math.random() * minNum + 1);
-          break;
         case 2:
           return parseInt(Math.random() * (maxNum - minNum + 1) + minNum);
-          break;
         default:
           return 0;
-          break;
       }
     };
   }
+  $.silence({
+    profile: {
+      enable: true,
+      avatar: "https://s2.loli.net/2024/11/11/DW7R35bAhwgULcd.jpg",
+      favicon: "",
+      notice: "大家早上中午晚上好呀，不好也可以，随便你。",
+    },
+    catalog: {
+      enable: true,
+      move: false,
+      index: true,
+      level1: "h2",
+      level2: "h3",
+      level3: "h4",
+    },
+    signature: {
+      enable: true,
+      home: "https://www.cnblogs.com/oldsaltfish/",
+      license: "CC BY 4.0",
+      link: "https://creativecommons.org/licenses/by/4.0",
+    },
+    sponsor: {
+      enable: false,
+      paypal: null,
+      wechat:
+        "https://i.mij.rip/2023/11/01/2367aa0957f868d417ead827d7cf92a9.png",
+      alipay:
+        "https://i.mji.rip/2023/11/01/9bb559d3c589d7182497010b13006c94.jpeg",
+    },
+    github: {
+      enable: false,
+      color: "#fff",
+      fill: "#FF85B8",
+      link: "https://github.com/OldSaltFish",
+    },
+    topImg: {
+      homeTopImg: ["https://pic.imgdb.cn/item/67394f54d29ded1a8c39bcd5.webp"],
+      notHomeTopImg: [
+        "https://pic.imgdb.cn/item/67394f54d29ded1a8c39bcd5.webp",
+      ],
+    },
+    topInfo: {
+      title: "Here, I am.",
+      text: "Life is bitter.",
+      github: "https://github.com/OldSaltFish",
+      weibo: "",
+      telegram: "",
+      music: "https://music.163.com/#/user/home?id=3811342727",
+      twitter: "",
+      zhihu: "",
+      mail: "mailto:oldsaltfish233@outlook.com",
+    },
+  });
 })(jQuery);
