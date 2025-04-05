@@ -18,6 +18,8 @@
 使用easy-less插件，按Ctrl+S时自动将less文件编译成css文件。  
 https://marketplace.cursorapi.com/items?itemName=mrcrowl.easy-less  
 
+### 框架迁移
+前面用lit写了一些小组件，但是后面越来越觉得lit-html不好用。因此需要换成其他模板，现在正考虑使用preact，jsx加编译，能够有更好的编写体验。  
 ### 博客园环境
 1. 博客园自带jquery环境。  
 截止到2025.3.9，目前的版本是3.3.1。  
